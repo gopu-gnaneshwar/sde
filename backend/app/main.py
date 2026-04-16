@@ -103,6 +103,10 @@ def create_app(
     def health() -> dict[str, str]:
         return {"status": "ok"}
 
+    @app.options("/{full_path:path}")
+    async def preflight_handler():
+        return {}
+
     @app.post(
         f"{container.settings.api_prefix}/auth/register",
         response_model=AuthResponse,
