@@ -37,7 +37,7 @@ def create_app(
 
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=container.settings.cors_origins,
+        allow_origins=["*"],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
@@ -104,7 +104,7 @@ def create_app(
         return {"status": "ok"}
 
     @app.options("/{full_path:path}")
-    async def preflight_handler():
+    async def options_handler(request: Request, full_path: str):
         return {}
 
     @app.post(
