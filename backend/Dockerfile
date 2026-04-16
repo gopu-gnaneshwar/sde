@@ -9,7 +9,7 @@ RUN apt-get update \
     && apt-get install --no-install-recommends -y ffmpeg build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-COPY backend /app
+COPY . /app
 
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir .
